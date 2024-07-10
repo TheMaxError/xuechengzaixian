@@ -1,0 +1,4 @@
+### 申请验证码
+POST {{checkcode_host}}/checkcode/pic
+### 校验验证码
+POST {{checkcode_host}}/checkcode/verify?key=checkcode:417554568c3142b290f1e93c110376b5&code=L8ZE

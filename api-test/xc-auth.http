@@ -1,0 +1,29 @@
+### POST申请令牌 授权码形式
+POST {{auth_host}}/
+    auth/oauth/
+    token?client_id=XcWebApp&client_secret=XcWebApp
+    &grant_type=authorization_code&code=l989Cw&redirect_uri=http://localhost
+
+### 密码形式
+POST {{auth_host}}/auth
+    /oauth/token?client_id=XcWebApp&client_secret=XcWebApp&grant_type=password&username=zhangsan&password=123
+
+###校验jwt令牌
+POST {{auth_host}}/auth/oauth/check_token?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieHVlY2hlbmctcGx1cyJdLCJ1c2VyX25hbWUiOiJ6aGFuZ3NhbiIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE3MjAzODYzMzAsImF1dGhvcml0aWVzIjpbInAxIl0sImp0aSI6IjQ2NDAxM2QwLWJkZTUtNGIyMy1iMDAyLTE1NDExNTlmYmZkMiIsImNsaWVudF9pZCI6IlhjV2ViQXBwIn0.a3T2XaQsh03eEfNoqjX4vReNfPsBmyQtzH5wP5TGM-I
+
+### 密码模式登录获取令牌
+POST {{auth_host}}/auth/oauth/token?
+    client_id=XcWebApp&client_secret=XcWebApp&grant_type=password&username=stu1&password=111111
+
+### 校验令牌
+POST {{auth_host}}/auth/oauth/check_token?
+    token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsieHVlY2hlbmctcGx1cyJdLCJ1c2VyX25hbWUiOiJ7XCJiaXJ0aGRheVwiOlwiMjAyMi0wOS0yOFQxOToyODo0NlwiLFwiY3JlYXRlVGltZVwiOlwiMjAyMi0wOS0yOFQwODozMjowM1wiLFwiaWRcIjpcIjUwXCIsXCJuYW1lXCI6XCLlrabnlJ8xXCIsXCJuaWNrbmFtZVwiOlwi5aSn5rC054mbXCIsXCJzZXhcIjpcIjFcIixcInN0YXR1c1wiOlwiMVwiLFwidXNlcm5hbWVcIjpcInN0dTFcIixcInVzZXJwaWNcIjpcImh0dHA6Ly9maWxlLjUxeHVlY2hlbmcuY24vZGRkZlwiLFwidXR5cGVcIjpcIjEwMTAwMVwifSIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE3MjA0NDM3MTQsImF1dGhvcml0aWVzIjpbInRlc3QiXSwianRpIjoiNTMyMmYwY2YtYjViOC00MGVhLWJhZjktYjA2MDZkY2RmYWJmIiwiY2xpZW50X2lkIjoiWGNXZWJBcHAifQ.xwuRnCr0NIJGE4W4zxXOHE_5DTCBm1DzKc7G2kUxSR4
+
+################扩展认证请求参数后######################
+###密码模式
+POST {{auth_host}}/auth/oauth/token?client_id=XcWebApp&client_secret=XcWebApp&
+    grant_type=password&username={"username":"stu1","authType":"password","password":"111111"}
+
+###### 密码模式
+POST {{auth_host}}/auth/oauth/token?client_id=XcWebApp&client_secret=XcWebApp&grant_type=password&
+    username={"username":"stu1","password":"22","authType":"password"}

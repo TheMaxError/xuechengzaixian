@@ -1,0 +1,38 @@
+server:
+  servlet:
+    context-path: /content
+  port: 63040
+#微服务配置
+spring:
+  application:
+    name: content-service #nacos配置命名时第二个字段#nacos配置命名时第一个字段
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.168.139.130:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&
+#    username: root
+#    password: root
+  cloud:
+    nacos:
+      server-addr: 192.168.139.130:8849
+      discovery:
+        namespace: dev
+        group: xuecheng-plus-project
+      config:
+        namespace: dev
+        group: xuecheng-plus-project
+        file-extension: yaml #nacos配置命名时第二个字段#nacos配置命名时第三个字段
+        refresh-enabled: true
+      shared-configs:
+        - data-id: feign-${spring.profiles.active}.yaml
+          group: xuecheng-plus-common
+          refresh: true
+
+  profiles:
+    active: dev #nacos配置命名时第二个字段
+# 日志文件配置路径
+logging:
+  config: classpath:log4j2-dev.xml
+
+
+
+

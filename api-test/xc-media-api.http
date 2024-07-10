@@ -1,0 +1,13 @@
+
+
+POST http://localhost:63050/api/media/files?pageNo=1&pageSize=10
+### 上传文件
+POST {{gateway_host}}/media/upload/coursefile
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="filedata"; filename="1.jpg"
+Content-Type: application/octet-stream
+
+< C:\Users\ma\Downloads\面具.jpg
+

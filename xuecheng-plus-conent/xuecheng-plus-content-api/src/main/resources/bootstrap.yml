@@ -1,0 +1,71 @@
+#server:
+#  servlet:
+#    context-path: /content
+#  port: 63040
+#微服务配置
+spring:
+  application:
+    name: content-api #nacos配置命名时第二个字段#nacos配置命名时第一个字段
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.168.139.130:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&
+#    username: root
+#    password: root
+  cloud:
+    nacos:
+      server-addr: 192.168.139.130:8849
+      discovery:
+        namespace: dev
+        group: xuecheng-plus-project
+      config:
+        #各配置文件 的优先级：项目应用名配置文件 > 扩展配置文件  > 共享配置文件 > 本地配置文件。
+        #override-none: true 在nacos配置文件中配置该配置即可实现本地优先
+        namespace: dev
+        group: xuecheng-plus-project
+        file-extension: yaml #nacos配置命名时第二个字段#nacos配置命名时第三个字段
+        refresh-enabled: true
+        extension-configs:
+          #将nacos中content-service-dev.yaml的配置文件进行额外导入(因为api接口工程依赖了service工程的jar，所以这里使用extension-configs扩展配置文件 的方式引用service工程所用到的配置文件。)
+          - data-id: content-service-${spring.profiles.active}.yaml
+            group: xuecheng-plus-project
+            refresh: true
+        shared-configs:
+          #加载公共配置
+          - data-id: content-swagger-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+          - data-id: freemarker-config-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+          - data-id: feign-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+          - data-id: search-${spring.profiles.active}.yaml
+            group: xuecheng-plus-project
+            refresh: true
+
+          - data-id: feign-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+
+  profiles:
+    active: dev #nacos配置命名时第二个字段#nacos配置命名时第二个字段
+# 日志文件配置路径
+#logging:
+#  config: classpath:log4j2-dev.xml
+
+#swagger:
+#  title: "学成在线内容管理系统"
+#  description: "内容系统管理系统对课程相关信息进行管理"
+#  base-package: com.xuecheng.content
+#  enabled: true
+#  version: 1.0.0
+
+
